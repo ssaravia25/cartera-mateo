@@ -1,0 +1,97 @@
+{
+  "owner": "Mateo",
+  "currency": "USD",
+  "totalBudget": 1000,
+  "positions": [
+    {
+      "ticker": "AAPL",
+      "name": "Apple",
+      "shares": 0,
+      "buyPrice": 0,
+      "buyDate": "2026-05-24",
+      "emoji": "📱",
+      "why": "Los que hacen tu iPhone y iPad. Cada vez que alguien compra un iPhone nuevo, esta empresa gana dinero."
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "shares": 0,
+      "buyPrice": 0,
+      "buyDate": "2026-05-24",
+      "emoji": "🎮",
+      "why": "Son los dueños de Xbox y de Minecraft. También de Windows y casi todo el software de oficina del mundo."
+    },
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "shares": 0,
+      "buyPrice": 0,
+      "buyDate": "2026-05-24",
+      "emoji": "🧠",
+      "why": "Hacen los chips (GPUs) que mueven los videojuegos y la inteligencia artificial. Sin NVIDIA no hay ChatGPT."
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet (Google)",
+      "shares": 0,
+      "buyPrice": 0,
+      "buyDate": "2026-05-24",
+      "emoji": "📺",
+      "why": "Dueños de YouTube, Google, Gmail y Android. Casi cualquier cosa que buscas en internet pasa por ellos."
+    },
+    {
+      "ticker": "AMZN",
+      "name": "Amazon",
+      "shares": 0,
+      "buyPrice": 0,
+      "buyDate": "2026-05-24",
+      "emoji": "📦",
+      "why": "Donde llegan los paquetes a casa. Además son dueños de la mitad de internet (AWS)."
+    },
+    {
+      "ticker": "DIS",
+      "name": "Disney",
+      "shares": 0,
+      "buyPrice": 0,
+      "buyDate": "2026-05-24",
+      "emoji": "🏰",
+      "why": "Pelis, Marvel, Star Wars, Pixar, los parques de atracciones y Disney+. Hacen historias."
+    },
+    {
+      "ticker": "NTDOY",
+      "name": "Nintendo",
+      "shares": 0,
+      "buyPrice": 0,
+      "buyDate": "2026-05-24",
+      "emoji": "🍄",
+      "why": "Mario, Zelda, Pokémon, la Switch. Los reyes de los videojuegos divertidos."
+    },
+    {
+      "ticker": "RBLX",
+      "name": "Roblox",
+      "shares": 0,
+      "buyPrice": 0,
+      "buyDate": "2026-05-24",
+      "emoji": "🟥",
+      "why": "La plataforma donde la gente crea sus propios juegos y otros los juegan. Cada Robux que gastan, ganan algo."
+    },
+    {
+      "ticker": "NKE",
+      "name": "Nike",
+      "shares": 0,
+      "buyPrice": 0,
+      "buyDate": "2026-05-24",
+      "emoji": "👟",
+      "why": "Zapatillas, ropa de deporte, el swoosh. Si Cristiano se pone unas Nike, vende más Nike."
+    },
+    {
+      "ticker": "MCD",
+      "name": "McDonald's",
+      "shares": 0,
+      "buyPrice": 0,
+      "buyDate": "2026-05-24",
+      "emoji": "🍔",
+      "why": "Hamburguesas, patatas y McFlurry en cada esquina del planeta. Más de 40.000 restaurantes en el mundo."
+    }
+  ]
+}
