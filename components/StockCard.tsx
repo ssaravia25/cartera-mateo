@@ -1,11 +1,12 @@
 import type { EnrichedPosition } from "@/lib/portfolio";
 
-function fmtUsd(n: number | null) {
+function fmtUsd(n: number | null, decimals = 2) {
   if (n == null || Number.isNaN(n)) return "—";
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-    maximumFractionDigits: 2,
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
   }).format(n);
 }
 
@@ -16,53 +17,69 @@ function fmtPct(n: number | null) {
 }
 
 export function StockCard({ p }: { p: EnrichedPosition }) {
-  const plUp = (p.plAbs ?? 0) >= 0;
+  const up = (p.plAbs ?? 0) >= 0;
   const priceLoaded = p.quote?.price != null;
+  const plColor = up ? "text-up" : "text-down";
+  const plBg = up ? "bg-up/10" : "bg-down/10";
+  const plBorder = up ? "border-up/20" : "border-down/20";
 
   return (
-    <article className="bg-card hover:bg-cardHover transition-colors border border-line rounded-2xl p-5 flex flex-col gap-3">
-      <header className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-3 min-w-0">
-          <span className="text-3xl leading-none" aria-hidden>
-            {p.emoji}
-          </span>
-          <div className="min-w-0">
-            <div className="text-ink font-semibold truncate">{p.name}</div>
-            <div className="text-xs text-muted tracking-wider">{p.ticker}</div>
-          </div>
-        </div>
-        <div className="text-right">
-          <div className="text-ink font-semibold tabular-nums text-lg">
-            {fmtUsd(p.quote?.price ?? null)}
-          </div>
-          <div className="text-[10px] text-muted uppercase tracking-wider">
-            {priceLoaded ? "precio actual" : p.quote?.error ?? "sin datos"}
-          </div>
+    <article className="bg-card hover:bg-cardHover transition-colors border border-line rounded-2xl p-5 flex flex-col gap-4">
+
+      {/* Header: emoji + name + ticker */}
+      <header className="flex items-center gap-3 min-w-0">
+        <span className="text-3xl leading-none shrink-0" aria-hidden>{p.emoji}</span>
+        <div className="min-w-0">
+          <div className="text-ink font-semibold truncate leading-tight">{p.name}</div>
+          <div className="text-[11px] text-muted tracking-widest font-medium">{p.ticker}</div>
         </div>
       </header>
 
-      <dl className="grid grid-cols-3 gap-2 text-xs border-t border-line pt-3">
-        <div className="flex flex-col">
-          <dt className="text-muted">Peso</dt>
+      {/* Price section */}
+      <div className="flex items-end justify-between gap-2">
+        <div>
+          <div className="text-[11px] text-muted mb-0.5">Ahora</div>
+          <div className="text-xl font-bold text-ink tabular-nums">
+            {priceLoaded ? fmtUsd(p.quote.price) : <span className="text-muted text-sm">sin datos</span>}
+          </div>
+        </div>
+        <div className="text-right">
+          <div className="text-[11px] text-muted mb-0.5">Compraste a</div>
+          <div className="text-sm font-semibold text-muted tabular-nums">
+            {fmtUsd(p.buyPrice)}
+          </div>
+        </div>
+      </div>
+
+      {/* P&L badge — protagonista */}
+      <div className={`rounded-xl border px-3 py-2.5 flex items-center justify-between ${plBg} ${plBorder}`}>
+        <span className="text-xs text-muted">Ganancia / Pérdida</span>
+        <div className="text-right">
+          <div className={`text-base font-bold tabular-nums ${plColor}`}>
+            {fmtUsd(p.plAbs)}
+          </div>
+          <div className={`text-xs font-semibold tabular-nums ${plColor}`}>
+            {fmtPct(p.plPct)}
+          </div>
+        </div>
+      </div>
+
+      {/* Meta: weight + market value */}
+      <dl className="grid grid-cols-2 gap-2 text-xs">
+        <div>
+          <dt className="text-muted">Peso en cartera</dt>
           <dd className="text-ink font-medium tabular-nums">
             {p.weightPct != null ? `${p.weightPct.toFixed(1)}%` : "—"}
           </dd>
         </div>
-        <div className="flex flex-col">
-          <dt className="text-muted">Valor</dt>
-          <dd className="text-ink font-medium tabular-nums">
-            {p.hasFill ? fmtUsd(p.marketValue) : "sin compra"}
-          </dd>
-        </div>
-        <div className="flex flex-col">
-          <dt className="text-muted">P&amp;L</dt>
-          <dd className={`font-medium tabular-nums ${plUp ? "text-up" : "text-down"}`}>
-            {p.hasFill ? `${fmtUsd(p.plAbs)} (${fmtPct(p.plPct)})` : "—"}
-          </dd>
+        <div className="text-right">
+          <dt className="text-muted">Valor actual</dt>
+          <dd className="text-ink font-medium tabular-nums">{fmtUsd(p.marketValue)}</dd>
         </div>
       </dl>
 
-      <p className="text-xs text-muted leading-relaxed border-t border-line pt-3">
+      {/* Educational description */}
+      <p className="text-[11px] text-muted leading-relaxed border-t border-line pt-3">
         {p.why}
       </p>
     </article>

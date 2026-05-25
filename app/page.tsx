@@ -23,8 +23,8 @@ export default async function Page() {
       <WeightDonut positions={snap.positions} />
 
       <footer className="text-xs text-muted text-center pt-4 pb-2 leading-relaxed">
-        Beta · solo precio de cierre actual. Fuente: Stooq (gratis, sin clave). Esto no es asesoramiento
-        financiero — es una cartera para aprender. Hecho con cariño para Mateo.
+        Precio de cierre actual · fuente Stooq · se actualiza cada ~60 segundos.
+        Precio de entrada fijado el 24 may 2026. Esto no es asesoramiento financiero — es una cartera para aprender.
         {anyError && (
           <div className="mt-1 text-down/80">
             Algunos tickers fallaron al cargar; reintenta en unos segundos.
