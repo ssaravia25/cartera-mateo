@@ -40,7 +40,7 @@ export function PortfolioHeader({ snap }: { snap: PortfolioSnapshot }) {
             Cartera de {snap.owner} 🚀
           </h1>
           <p className="text-xs text-muted mt-1">
-            Entrada: 24 may 2026 · Actualizado: {fmtDate(snap.updatedAt)}
+            Actualizado: {fmtDate(snap.updatedAt)}
           </p>
         </div>
         {!hasFill && (
@@ -50,38 +50,40 @@ export function PortfolioHeader({ snap }: { snap: PortfolioSnapshot }) {
         )}
       </div>
 
-      {/* Main stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {/* Main stats — 2 cols on mobile (Valor + P&L), 3 cols on sm+ */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
 
         {/* Total value */}
-        <div className="bg-bg rounded-xl border border-line p-4">
-          <div className="text-xs text-muted uppercase tracking-wider mb-1">Valor hoy</div>
-          <div className="text-3xl font-bold text-ink tabular-nums">
+        <div className="bg-bg rounded-xl border border-line p-3 sm:p-4">
+          <div className="text-[10px] sm:text-xs text-muted uppercase tracking-wider mb-1">Valor hoy</div>
+          <div className="text-lg sm:text-2xl lg:text-3xl font-bold text-ink tabular-nums leading-tight">
             {hasFill ? fmtUsd(snap.totalValue) : fmtUsd(snap.totalBudget)}
           </div>
-          <div className="text-xs text-muted mt-1">
+          <div className="text-[10px] sm:text-xs text-muted mt-1 leading-snug">
             invertiste {fmtUsd(snap.totalCost || snap.totalBudget)}
           </div>
         </div>
 
         {/* P&L */}
-        <div className={`rounded-xl border p-4 ${hasFill ? plBg : "bg-bg border-line"}`}>
-          <div className="text-xs text-muted uppercase tracking-wider mb-1">Ganancia / Pérdida</div>
-          <div className={`text-3xl font-bold tabular-nums ${hasFill ? plColor : "text-muted"}`}>
+        <div className={`rounded-xl border p-3 sm:p-4 ${hasFill ? plBg : "bg-bg border-line"}`}>
+          <div className="text-[10px] sm:text-xs text-muted uppercase tracking-wider mb-1">Ganancia / Pérdida</div>
+          <div className={`text-lg sm:text-2xl lg:text-3xl font-bold tabular-nums leading-tight ${hasFill ? plColor : "text-muted"}`}>
             {hasFill ? fmtUsd(snap.totalPLAbs) : "—"}
           </div>
-          <div className={`text-xs mt-1 font-semibold tabular-nums ${hasFill ? plColor : "text-muted"}`}>
+          <div className={`text-[10px] sm:text-xs mt-1 font-semibold tabular-nums ${hasFill ? plColor : "text-muted"}`}>
             {hasFill ? fmtPct(snap.totalPLPct) : "tras la compra"}
           </div>
         </div>
 
-        {/* Positions */}
-        <div className="bg-bg rounded-xl border border-line p-4">
-          <div className="text-xs text-muted uppercase tracking-wider mb-1">Posiciones</div>
-          <div className="text-3xl font-bold text-ink">
-            {snap.positions.length}
+        {/* Positions — full width on mobile so it doesn't look orphaned */}
+        <div className="bg-bg rounded-xl border border-line p-3 sm:p-4 col-span-2 sm:col-span-1">
+          <div className="text-[10px] sm:text-xs text-muted uppercase tracking-wider mb-1">Posiciones</div>
+          <div className="text-lg sm:text-2xl lg:text-3xl font-bold text-ink">
+            {snap.positions.length} <span className="text-xs sm:text-sm font-normal text-muted">acciones</span>
           </div>
-          <div className="text-xs text-muted mt-1">acciones distintas</div>
+          <div className="text-[10px] sm:text-xs text-muted mt-1">
+            entrada 24 may 2026
+          </div>
         </div>
 
       </div>

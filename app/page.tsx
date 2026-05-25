@@ -14,7 +14,7 @@ export default async function Page() {
     <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex flex-col gap-6">
       <PortfolioHeader snap={snap} />
 
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+      <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
         {snap.positions.map((p) => (
           <StockCard key={p.ticker} p={p} />
         ))}

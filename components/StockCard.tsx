@@ -52,9 +52,9 @@ export function StockCard({ p }: { p: EnrichedPosition }) {
       </div>
 
       {/* P&L badge — protagonista */}
-      <div className={`rounded-xl border px-3 py-2.5 flex items-center justify-between ${plBg} ${plBorder}`}>
-        <span className="text-xs text-muted">Ganancia / Pérdida</span>
-        <div className="text-right">
+      <div className={`rounded-xl border px-3 py-2.5 flex items-start justify-between gap-2 ${plBg} ${plBorder}`}>
+        <span className="text-xs text-muted leading-snug pt-0.5">Ganancia /<br />Pérdida</span>
+        <div className="text-right shrink-0">
           <div className={`text-base font-bold tabular-nums ${plColor}`}>
             {fmtUsd(p.plAbs)}
           </div>

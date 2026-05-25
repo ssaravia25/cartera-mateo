@@ -52,13 +52,18 @@ export function WeightDonut({ positions }: { positions: EnrichedPosition[] }) {
     <section className="bg-card border border-line rounded-2xl p-5">
       <h2 className="text-ink font-semibold mb-4">Reparto de la cartera</h2>
       <div className="flex flex-col sm:flex-row items-center gap-6">
-        <svg width={size} height={size} className="shrink-0">
+        {/* viewBox makes the SVG scale with its container; max-w caps it on desktop */}
+        <svg
+          viewBox={`0 0 ${size} ${size}`}
+          className="w-full max-w-[200px] sm:max-w-[220px] shrink-0"
+          aria-hidden
+        >
           <circle cx={cx} cy={cy} r={radius} fill="none" stroke="#1f2a44" strokeWidth={stroke} />
           {segments}
         </svg>
-        <ul className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs w-full">
+        <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs w-full">
           {slices.map((s, i) => (
-            <li key={i} className="flex items-center justify-between gap-2">
+            <li key={i} className="flex items-center justify-between gap-2 min-w-0">
               <span className="flex items-center gap-2 min-w-0">
                 <span
                   className="inline-block w-2.5 h-2.5 rounded-sm shrink-0"
@@ -66,7 +71,7 @@ export function WeightDonut({ positions }: { positions: EnrichedPosition[] }) {
                 />
                 <span className="text-ink truncate">{s.label}</span>
               </span>
-              <span className="text-muted tabular-nums">{s.value.toFixed(1)}%</span>
+              <span className="text-muted tabular-nums shrink-0">{s.value.toFixed(1)}%</span>
             </li>
           ))}
         </ul>
